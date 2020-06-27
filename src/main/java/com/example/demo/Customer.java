@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Embedded;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
@@ -11,10 +12,13 @@ public class Customer {
     @Id
     private final Long id;
 
-    private final String firstName;
-    private final String lastName;
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
+    private final FirstName firstName;
 
-    public static Customer of(String firstName, String lastName) {
+    @Embedded(onEmpty = Embedded.OnEmpty.USE_EMPTY)
+    private final LastName lastName;
+
+    public static Customer of(FirstName firstName, LastName lastName) {
         return new Customer(null, firstName, lastName);
     }
 
@@ -22,7 +26,7 @@ public class Customer {
         return new Customer(id, firstName, lastName);
     }
 
-    public String fullname() {
-        return firstName + " " + lastName;
+    public FullName fullname() {
+        return new FullName(firstName, lastName);
     }
 }
