@@ -2,12 +2,10 @@ package com.example.demo;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@Getter
 public class Customer {
     @Id
     private final Long id;
