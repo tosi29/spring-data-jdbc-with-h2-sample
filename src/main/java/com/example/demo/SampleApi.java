@@ -17,17 +17,17 @@ public class SampleApi {
     }
 
     @RequestMapping("/customer/{id}")
-    public Optional<Customer> referUser(@PathVariable("id") Long id) {
+    public Optional<Customer> referCustomer(@PathVariable("id") Long id) {
         return sampleService.referCustomer(id);
     }
 
     @RequestMapping("/customers/all")
-    public List<Customer> referUsers() {
+    public List<Customer> referCutomers() {
         return sampleService.referCustomers();
     }
 
-    @RequestMapping("/adduser")
-    public String addUSer() {
+    @RequestMapping("/addcustomer")
+    public String addCustomer() {
         sampleService.addCustomer();
         return "success";
     }
