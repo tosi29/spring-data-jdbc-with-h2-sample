@@ -22,4 +22,7 @@ public class Customer {
         return new Customer(id, firstName, lastName);
     }
 
+    public String fullname() {
+        return firstName + " " + lastName;
+    }
 }

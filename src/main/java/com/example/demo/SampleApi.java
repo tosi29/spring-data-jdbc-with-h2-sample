@@ -17,12 +17,12 @@ public class SampleApi {
     }
 
     @RequestMapping("/customer/{id}")
-    public Optional<Customer> referCustomer(@PathVariable("id") Long id) {
+    public String referCustomerFullName(@PathVariable("id") Long id) {
         return sampleService.referCustomer(id);
     }
 
     @RequestMapping("/customers/all")
-    public List<Customer> referCutomers() {
+    public List<String> referCutomers() {
         return sampleService.referCustomers();
     }
 

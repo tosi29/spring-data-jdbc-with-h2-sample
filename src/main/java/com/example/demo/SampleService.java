@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SampleService {
@@ -14,12 +15,13 @@ public class SampleService {
         this.customerRepository = customerRepository;
     }
 
-    public Optional<Customer> referCustomer(Long id) {
-        return customerRepository.findById(id);
+    public String referCustomer(Long id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+        return customer.orElseThrow(() -> new RuntimeException("Customer is not found")).fullname();
     }
 
-    public List<Customer> referCustomers() {
-        return customerRepository.findAll();
+    public List<String> referCustomers() {
+        return customerRepository.findAll().stream().map(x -> x.fullname()).collect(Collectors.toList());
     }
 
     public void addCustomer() {
